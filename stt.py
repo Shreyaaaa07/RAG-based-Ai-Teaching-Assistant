@@ -1,5 +1,6 @@
 from email.mime import audio
 
+from torch import chunk
 import whisper
 import json
 
@@ -14,9 +15,14 @@ print(result)
 # with open("output.json", "w")as f:
 #     json.dump(f, result)    
 print(result["segments"])
-chunk = []
+chunks = []
 for segements in result["segments"]:
-    chunk.append({"start": segements["start"], "end": segements["end"], "text": segements["text"]})             
+    chunks.append({"start": segements["start"], "end": segements["end"], "text": segements["text"]})             
+
+print(chunks)
+
+with open("chunks.json", "w") as f:
+    json.dump(chunks, f)
 
 
     
