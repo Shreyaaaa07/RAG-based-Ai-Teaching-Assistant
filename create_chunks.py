@@ -8,6 +8,8 @@ audios = os.listdir("audios")
 
 for audio in audios:
     print(audio)
+    number = audio.split("_")[0]
+    title = audio.split("_")[1]
     # result = model.transcribe(audio = "audios/samplee.mp3",
     #                           language = "hi",
     #                           task="translate",
