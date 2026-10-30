@@ -12,7 +12,11 @@ result = model.transsccribe(audio = "audios/1.mp3",
 print(result)                            
 # print(result["text"])
 # with open("output.json", "w")as f:
-#     json.dump(f, result)                         
+#     json.dump(f, result)    
+print(result["segments"])
+chunk = []
+for segements in result["segments"]:
+    chunk.append({"start": segements["start"], "end": segements["end"], "text": segements["text"]})             
 
 
     
