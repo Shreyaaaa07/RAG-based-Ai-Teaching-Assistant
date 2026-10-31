@@ -1,3 +1,4 @@
+from pydoc import text
 from unittest import result
 
 import whisper
@@ -19,4 +20,9 @@ for audio in audios:
     #                           word_timetamps=False )
     chunks = []
     for segment in result["segments"]:
-        chunks.append({ " number": number, "title": title, "start": segment["start"], "end": segment["end"], "text": segment["text"]})      
+        chunks.append({ " number": number, "title": title, "start": segment["start"], "end": segment["end"], "text": segment["text"]})
+
+    chunks_with_metadata = {chunks: chunks, text: result["text"]}          
+
+    with open(f"chunks_{number}.json", "w") as f:
+        json.dump(chunks_with_metadata, f)
