@@ -1,3 +1,5 @@
+from unittest import result
+
 import whisper
 import json
 import os
@@ -15,3 +17,6 @@ for audio in audios:
     #                           language = "hi",
     #                           task="translate",
     #                           word_timetamps=False )
+    chunks = []
+    for segment in result["segments"]:
+        chunks.append({"start": segment["start"], "end": segment["end"], "text": segment["text"]})      
