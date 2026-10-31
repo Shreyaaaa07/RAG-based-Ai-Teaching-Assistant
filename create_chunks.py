@@ -1,5 +1,6 @@
 from pydoc import text
 from unittest import result
+from xml.parsers.expat import model
 
 import whisper
 import json
@@ -15,14 +16,16 @@ for audio in audios:
     title = audio.split("_")[1]
     print(number, title)
     # result = model.transcribe(audio = "audios/samplee.mp3",
-    #                           language = "hi",
-    #                           task="translate",
-    #                           word_timetamps=False )
+    result = model.transcribe(audio = f"audios/sample.mp3",
+                             language = "hi",
+                               task="translate",
+                              word_timetamps=False )
     chunks = []
     for segment in result["segments"]:
         chunks.append({ " number": number, "title": title, "start": segment["start"], "end": segment["end"], "text": segment["text"]})
 
-    chunks_with_metadata = {chunks: chunks, text: result["text"]}          
+    chunks_with_metadata = {chunks: chunks, text: result["text"]}
+              
 
     with open(f"chunks_{number}.json", "w") as f:
         json.dump(chunks_with_metadata, f)
