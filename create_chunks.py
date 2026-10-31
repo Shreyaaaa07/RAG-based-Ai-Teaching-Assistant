@@ -19,4 +19,4 @@ for audio in audios:
     #                           word_timetamps=False )
     chunks = []
     for segment in result["segments"]:
-        chunks.append({"start": segment["start"], "end": segment["end"], "text": segment["text"]})      
+        chunks.append({ " number": number, "title": title, "start": segment["start"], "end": segment["end"], "text": segment["text"]})      
